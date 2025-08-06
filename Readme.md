@@ -1,25 +1,37 @@
 This is the base level setup of using OpenGL,Glad,GLFW. 
 For rendering a 2d Triangle.
 
-from root run the command - 
+# from root run the command - 
 ```bash
-cmake -S . -Build -G "Viusal Studio 17 2022"
+cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release
 ```
+This will generate the build files in the build folder.
 
-this will generate the build files in the build folder.
-Then open the build folder in Visual Studio and run the project.
-
-
-then open the folder in visual studio or click the solution inside the build.
-then build usib ctrl+shift+ b
-
-then run using ctrl + f5
-*if run not working manually run it from the folder dir. *
-
-
-how to ignore submodules in git
+Then to do the linking with - 
 ```bash
-git submodule deinit -f external/glfw
-git rm -f external/glfw
-rm -rf .git/modules/external/glfw
+cmake --build build
 ```
+This will build the project and create an executable in the build folder. (statically linked), easily portable.
+
+
+# Check the dependency of the exe with the command - 
+```bash
+dumpbin /dependents Minecraft_Clone.exe
+```
+THis command only works in Visual Studio Installed , if installed and not working, search dumbpin and open folder and add to PATH.
+or easily copy the dumpbin.exe to the exe folder , instead of adding to PATH.
+)
+
+# all the git submodules - 
+
+For glad dowloaded from the official site
+
+[submodule "external/stb"]
+	path = external/stb
+	url = https://github.com/nothings/stb.git
+[submodule "external/glm"]
+	path = external/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "external/glfw"]
+	path = external/glfw
+	url = https://github.com/glfw/glfw.git
