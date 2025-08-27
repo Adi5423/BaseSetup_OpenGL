@@ -1,8 +1,10 @@
 #include "Camera.hpp"
+#include <glm/gtc/constants.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 Camera::Camera(glm::vec3 position)
     : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(3.0f), MouseSensitivity(0.1f),
-      Yaw(-90.0f), Pitch(0.0f), WorldUp(glm::vec3(0.0f, 1.0f, 0.0f)) {
+    Yaw(-90.0f), Pitch(0.0f), WorldUp(glm::vec3(0.0f, 1.0f, 0.0f)) {
     Position = position;
     updateCameraVectors();
 }
@@ -33,7 +35,7 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset) {
 }
 
 void Camera::updateCameraVectors() {
-    glm::vec3 front;
+    glm::vec3 front(0.0f);
     front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
     front.y = sin(glm::radians(Pitch));
     front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));

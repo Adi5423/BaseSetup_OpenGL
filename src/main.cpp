@@ -4,17 +4,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
-#include "Camera.hpp"
+#include <vector>
 
-// --- Globals for camera and timing ---
-static Camera camera(glm::vec3(0.0f, 1.0f, 3.0f));
+#include "Camera.hpp"
+#include "Chunk.hpp"
+
+// --- Globals ---
+static Camera camera(glm::vec3(16.0f, 20.0f, 40.0f)); // spawn above chunk
 static float deltaTime = 0.0f;
 static float lastFrame = 0.0f;
 static float lastX = 1280.0f / 2.0f;
 static float lastY = 720.0f / 2.0f;
 static bool firstMouse = true;
 
-// --- Input callbacks ---
 static void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     if (firstMouse) {
         lastX = static_cast<float>(xpos);
@@ -29,6 +31,9 @@ static void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 }
 
 static void processInput(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -39,153 +44,87 @@ static void processInput(GLFWwindow* window) {
         camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
-// --- Shader source strings ---
 static const char* vertexShaderSource = R"glsl(
-    #version 330 core
-    layout(location = 0) in vec3 aPos;
-    uniform mat4 u_MVP;
-    void main() {
-        gl_Position = u_MVP * vec4(aPos, 1.0);
-    }
+#version 330 core
+layout(location = 0) in vec3 aPos;
+layout(location = 1) in vec3 aColor;
+out vec3 vColor;
+uniform mat4 u_MVP;
+void main() {
+    vColor = aColor;
+    gl_Position = u_MVP * vec4(aPos, 1.0);
+}
 )glsl";
 
 static const char* fragmentShaderSource = R"glsl(
-    #version 330 core
-    out vec4 FragColor;
-    void main() {
-        FragColor = vec4(1.0, 0.5, 0.2, 1.0);
-    }
+#version 330 core
+in vec3 vColor;
+out vec4 FragColor;
+void main() {
+    FragColor = vec4(vColor, 1.0);
+}
 )glsl";
 
 int main() {
     if (!glfwInit()) {
-        std::cerr << "Failed to initialize GLFW" << std::endl;
+        std::cerr << "GLFW init failed\n";
         return -1;
     }
 
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "MineCraft_Clone", nullptr, nullptr);
+    // GL 3.3 core
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Minecraft_Clone - Perlin Terrain", nullptr, nullptr);
     if (!window) {
-        std::cerr << "Failed to create GLFW window" << std::endl;
+        std::cerr << "Failed to create window\n";
         glfwTerminate();
         return -1;
     }
-
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);  // Enable VSync
+    glfwSwapInterval(1);
 
-    // Set input callbacks and capture mouse
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    // Initialize GLAD after context creation
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Failed to initialize GLAD" << std::endl;
-        glfwTerminate();
+        std::cerr << "Failed to init GLAD\n";
         return -1;
     }
 
-    // --- Compile and link shaders ---
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-    glCompileShader(vertexShader);
+    // Basic shader compile/link
+    auto compile = [](GLenum type, const char* src) -> unsigned int {
+        unsigned int sh = glCreateShader(type);
+        glShaderSource(sh, 1, &src, nullptr);
+        glCompileShader(sh);
+        int ok; glGetShaderiv(sh, GL_COMPILE_STATUS, &ok);
+        if (!ok) {
+            char log[1024]; glGetShaderInfoLog(sh, 1024, nullptr, log);
+            std::cerr << "Shader compile error: " << log << "\n";
+        }
+        return sh;
+        };
 
-    int success = 0;
-    char infoLog[512] = {0};
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
-        std::cerr << "Vertex shader compile error:\n" << infoLog << std::endl;
-    }
-
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-    glCompileShader(fragmentShader);
-
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
-        std::cerr << "Fragment shader compile error:\n" << infoLog << std::endl;
-    }
-
+    unsigned int vs = compile(GL_VERTEX_SHADER, vertexShaderSource);
+    unsigned int fs = compile(GL_FRAGMENT_SHADER, fragmentShaderSource);
     unsigned int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
+    glAttachShader(shaderProgram, vs);
+    glAttachShader(shaderProgram, fs);
     glLinkProgram(shaderProgram);
+    int ok; glGetProgramiv(shaderProgram, GL_LINK_STATUS, &ok);
+    if (!ok) { char log[1024]; glGetProgramInfoLog(shaderProgram, 1024, nullptr, log); std::cerr << "Link error: " << log << "\n"; }
+    glDeleteShader(vs); glDeleteShader(fs);
 
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
-        std::cerr << "Shader linking error:\n" << infoLog << std::endl;
-    }
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-
-    // --- Cube vertex data ---
-    const float cubeVertices[] = {
-        // positions
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-
-        -0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
-
-        -0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f
-    };
-
-    unsigned int VBO = 0, VAO = 0;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-
-    glBindVertexArray(VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-
-    // --- Enable depth testing for 3D ---
+    // Depth test
     glEnable(GL_DEPTH_TEST);
 
-    // --- Render loop ---
+    // Create one chunk at origin (originX, originZ), size 32x32
+    const int CHUNK_SIZE = 32;
+    Chunk chunk(0, 0, CHUNK_SIZE, CHUNK_SIZE);
+    chunk.BuildMesh();
+
+    // Render loop
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
@@ -194,25 +133,14 @@ int main() {
         glfwPollEvents();
         processInput(window);
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        // Render
+        glClearColor(0.53f, 0.80f, 0.92f, 1.0f); // sky-like
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
-
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f/720.0f, 0.1f, 100.0f);
-        unsigned int mvpLoc = glGetUniformLocation(shaderProgram, "u_MVP");
+        glm::mat4 projection = glm::perspective(glm::radians(70.0f), 1280.0f / 720.0f, 0.1f, 500.0f);
 
-        // Draw a 10x1x10 grid of cubes
-        for (int x = 0; x < 10; x++) {
-            for (int z = 0; z < 10; z++) {
-                glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(static_cast<float>(x), 0.0f, static_cast<float>(z)));
-                glm::mat4 mvp = projection * view * model;
-                glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
-                glDrawArrays(GL_TRIANGLES, 0, 36);
-            }
-        }
+        chunk.Draw(shaderProgram, view, projection);
 
         glfwSwapBuffers(window);
     }
