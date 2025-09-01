@@ -2,7 +2,7 @@ add_executable(Minecraft_Clone
     main.cpp
     Camera.cpp
     Chunk.cpp
-)
+ "Physics.cpp" "Physics.hpp" "Collision.cpp")
 
 target_include_directories(Minecraft_Clone PRIVATE
     ${PROJECT_SOURCE_DIR}/include
