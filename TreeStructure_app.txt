@@ -1,0 +1,6 @@
+app/
+└── game/
+    ├── include/
+    ├── src/
+    │   └── main.cpp
+    └── CMakeLists.txt

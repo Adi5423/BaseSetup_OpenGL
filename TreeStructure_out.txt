@@ -1,0 +1,372 @@
+out/
+└── build/
+    └── x64-Release/
+        ├── .cmake/
+        │   └── api/
+        │       └── v1/
+        │           ├── query/
+        │           │   └── client-MicrosoftVS/
+        │           │       └── query.json
+        │           └── reply/
+        │               ├── cache-v2-d51262ad682e88e46672.json
+        │               ├── cmakeFiles-v1-d4ce22ea8c0c327ce853.json
+        │               ├── codemodel-v2-60d8b000cf5f530aec79.json
+        │               ├── directory-.-RelWithDebInfo-d0094a50bb2071803777.json
+        │               ├── directory-app.game-RelWithDebInfo-e7e593b8702529c0ec53.json
+        │               ├── directory-engine-RelWithDebInfo-776e2b00c6520ab49d05.json
+        │               ├── directory-external-RelWithDebInfo-d8969718d56d94ae4e32.json
+        │               ├── directory-external.glad-RelWithDebInfo-fe552af5a86a4942293e.json
+        │               ├── directory-external.glfw-RelWithDebInfo-c10db1b6721b8b721758.json
+        │               ├── directory-external.glfw.docs-RelWithDebInfo-eb5367a6527f9ecc4502.json
+        │               ├── directory-external.glfw.src-RelWithDebInfo-b2a5356f9c002f0a1483.json
+        │               ├── directory-external.glm-RelWithDebInfo-c35beecffdababf19b76.json
+        │               ├── directory-external.glm.glm-RelWithDebInfo-abc7302ed9fa59a98343.json
+        │               ├── index-2025-09-02T17-21-08-0380.json
+        │               ├── target-Minecraft_Clone-RelWithDebInfo-ff59c1ae7934951132ad.json
+        │               ├── target-docs-RelWithDebInfo-6ea555750caf27912282.json
+        │               ├── target-engine-RelWithDebInfo-da146e0f74b68b7ed000.json
+        │               ├── target-glad-RelWithDebInfo-f27819bb9d34b49890c9.json
+        │               ├── target-glfw-RelWithDebInfo-4416d2ff5d72ac0fb502.json
+        │               ├── target-glm-RelWithDebInfo-37fb284b68ef187190e6.json
+        │               ├── target-uninstall-RelWithDebInfo-a1783e73f3d49cc495a8.json
+        │               ├── target-update_mappings-RelWithDebInfo-42cf3a2a46558fd29867.json
+        │               └── toolchains-v1-5300e4a67eb2d6de3893.json
+        ├── CMakeFiles/
+        │   ├── 3.31.6-msvc6/
+        │   │   ├── CompilerIdC/
+        │   │   │   ├── tmp/
+        │   │   │   ├── CMakeCCompilerId.c
+        │   │   │   ├── CMakeCCompilerId.exe
+        │   │   │   └── CMakeCCompilerId.obj
+        │   │   ├── CompilerIdCXX/
+        │   │   │   ├── tmp/
+        │   │   │   ├── CMakeCXXCompilerId.cpp
+        │   │   │   ├── CMakeCXXCompilerId.exe
+        │   │   │   └── CMakeCXXCompilerId.obj
+        │   │   ├── CMakeCCompiler.cmake
+        │   │   ├── CMakeCXXCompiler.cmake
+        │   │   ├── CMakeDetermineCompilerABI_C.bin
+        │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+        │   │   ├── CMakeRCCompiler.cmake
+        │   │   └── CMakeSystem.cmake
+        │   ├── ShowIncludes/
+        │   │   ├── foo.h
+        │   │   ├── main.c
+        │   │   └── main.obj
+        │   ├── pkgRedirects/
+        │   ├── CMakeConfigureLog.yaml
+        │   ├── TargetDirectories.txt
+        │   ├── VerifyGlobs.cmake
+        │   ├── cmake.check_cache
+        │   ├── cmake.verify_globs
+        │   └── rules.ninja
+        ├── Testing/
+        │   └── Temporary/
+        │       └── LastTest.log
+        ├── app/
+        │   └── game/
+        │       ├── CMakeFiles/
+        │       │   └── Minecraft_Clone.dir/
+        │       │       ├── src/
+        │       │       │   └── main.cpp.obj
+        │       │       ├── embed.manifest
+        │       │       ├── intermediate.manifest
+        │       │       ├── manifest.rc
+        │       │       ├── manifest.res
+        │       │       └── vc140.pdb
+        │       └── cmake_install.cmake
+        ├── bin/
+        │   ├── Minecraft_Clone.exe
+        │   ├── Minecraft_Clone.ilk
+        │   └── Minecraft_Clone.pdb
+        ├── engine/
+        │   ├── CMakeFiles/
+        │   │   └── engine.dir/
+        │   │       ├── __/
+        │   │       │   └── src/
+        │   │       │       └── Physics.cpp.obj
+        │   │       ├── core/
+        │   │       │   └── src/
+        │   │       │       ├── Camera.cpp.obj
+        │   │       │       └── Collision.cpp.obj
+        │   │       ├── world/
+        │   │       │   └── src/
+        │   │       │       └── Chunk.cpp.obj
+        │   │       └── engine.pdb
+        │   ├── cmake_install.cmake
+        │   └── engine.lib
+        ├── external/
+        │   ├── CMakeFiles/
+        │   ├── glad/
+        │   │   ├── CMakeFiles/
+        │   │   │   └── glad.dir/
+        │   │   │       ├── src/
+        │   │   │       │   └── glad.c.obj
+        │   │   │       └── glad.pdb
+        │   │   ├── cmake_install.cmake
+        │   │   └── glad.lib
+        │   ├── glfw/
+        │   │   ├── CMakeFiles/
+        │   │   │   └── Export/
+        │   │   │       └── f367bd07922f2ecfc14cf5547f1f7c4e/
+        │   │   │           ├── glfw3Targets-relwithdebinfo.cmake
+        │   │   │           └── glfw3Targets.cmake
+        │   │   ├── docs/
+        │   │   │   ├── CMakeFiles/
+        │   │   │   ├── html/
+        │   │   │   │   ├── search/
+        │   │   │   │   │   ├── all_0.js
+        │   │   │   │   │   ├── all_1.js
+        │   │   │   │   │   ├── all_10.js
+        │   │   │   │   │   ├── all_11.js
+        │   │   │   │   │   ├── all_12.js
+        │   │   │   │   │   ├── all_13.js
+        │   │   │   │   │   ├── all_14.js
+        │   │   │   │   │   ├── all_15.js
+        │   │   │   │   │   ├── all_16.js
+        │   │   │   │   │   ├── all_17.js
+        │   │   │   │   │   ├── all_18.js
+        │   │   │   │   │   ├── all_19.js
+        │   │   │   │   │   ├── all_1a.js
+        │   │   │   │   │   ├── all_2.js
+        │   │   │   │   │   ├── all_3.js
+        │   │   │   │   │   ├── all_4.js
+        │   │   │   │   │   ├── all_5.js
+        │   │   │   │   │   ├── all_6.js
+        │   │   │   │   │   ├── all_7.js
+        │   │   │   │   │   ├── all_8.js
+        │   │   │   │   │   ├── all_9.js
+        │   │   │   │   │   ├── all_a.js
+        │   │   │   │   │   ├── all_b.js
+        │   │   │   │   │   ├── all_c.js
+        │   │   │   │   │   ├── all_d.js
+        │   │   │   │   │   ├── all_e.js
+        │   │   │   │   │   ├── all_f.js
+        │   │   │   │   │   ├── classes_0.js
+        │   │   │   │   │   ├── close.svg
+        │   │   │   │   │   ├── defines_0.js
+        │   │   │   │   │   ├── files_0.js
+        │   │   │   │   │   ├── files_1.js
+        │   │   │   │   │   ├── files_2.js
+        │   │   │   │   │   ├── files_3.js
+        │   │   │   │   │   ├── files_4.js
+        │   │   │   │   │   ├── files_5.js
+        │   │   │   │   │   ├── files_6.js
+        │   │   │   │   │   ├── files_7.js
+        │   │   │   │   │   ├── files_8.js
+        │   │   │   │   │   ├── functions_0.js
+        │   │   │   │   │   ├── groups_0.js
+        │   │   │   │   │   ├── groups_1.js
+        │   │   │   │   │   ├── groups_10.js
+        │   │   │   │   │   ├── groups_2.js
+        │   │   │   │   │   ├── groups_3.js
+        │   │   │   │   │   ├── groups_4.js
+        │   │   │   │   │   ├── groups_5.js
+        │   │   │   │   │   ├── groups_6.js
+        │   │   │   │   │   ├── groups_7.js
+        │   │   │   │   │   ├── groups_8.js
+        │   │   │   │   │   ├── groups_9.js
+        │   │   │   │   │   ├── groups_a.js
+        │   │   │   │   │   ├── groups_b.js
+        │   │   │   │   │   ├── groups_c.js
+        │   │   │   │   │   ├── groups_d.js
+        │   │   │   │   │   ├── groups_e.js
+        │   │   │   │   │   ├── groups_f.js
+        │   │   │   │   │   ├── mag.svg
+        │   │   │   │   │   ├── mag_d.svg
+        │   │   │   │   │   ├── mag_sel.svg
+        │   │   │   │   │   ├── mag_seld.svg
+        │   │   │   │   │   ├── pages_0.js
+        │   │   │   │   │   ├── pages_1.js
+        │   │   │   │   │   ├── pages_10.js
+        │   │   │   │   │   ├── pages_11.js
+        │   │   │   │   │   ├── pages_2.js
+        │   │   │   │   │   ├── pages_3.js
+        │   │   │   │   │   ├── pages_4.js
+        │   │   │   │   │   ├── pages_5.js
+        │   │   │   │   │   ├── pages_6.js
+        │   │   │   │   │   ├── pages_7.js
+        │   │   │   │   │   ├── pages_8.js
+        │   │   │   │   │   ├── pages_9.js
+        │   │   │   │   │   ├── pages_a.js
+        │   │   │   │   │   ├── pages_b.js
+        │   │   │   │   │   ├── pages_c.js
+        │   │   │   │   │   ├── pages_d.js
+        │   │   │   │   │   ├── pages_e.js
+        │   │   │   │   │   ├── pages_f.js
+        │   │   │   │   │   ├── search.css
+        │   │   │   │   │   ├── search.js
+        │   │   │   │   │   ├── searchdata.js
+        │   │   │   │   │   ├── typedefs_0.js
+        │   │   │   │   │   ├── variables_0.js
+        │   │   │   │   │   ├── variables_1.js
+        │   │   │   │   │   ├── variables_2.js
+        │   │   │   │   │   ├── variables_3.js
+        │   │   │   │   │   ├── variables_4.js
+        │   │   │   │   │   ├── variables_5.js
+        │   │   │   │   │   ├── variables_6.js
+        │   │   │   │   │   ├── variables_7.js
+        │   │   │   │   │   ├── variables_8.js
+        │   │   │   │   │   └── variables_9.js
+        │   │   │   │   ├── bc_s.png
+        │   │   │   │   ├── bc_sd.png
+        │   │   │   │   ├── build_8md.html
+        │   │   │   │   ├── build_guide.html
+        │   │   │   │   ├── clipboard.js
+        │   │   │   │   ├── closed.png
+        │   │   │   │   ├── compat_8md.html
+        │   │   │   │   ├── compat_guide.html
+        │   │   │   │   ├── compile_8md.html
+        │   │   │   │   ├── compile_guide.html
+        │   │   │   │   ├── context_8md.html
+        │   │   │   │   ├── context_guide.html
+        │   │   │   │   ├── cookie.js
+        │   │   │   │   ├── deprecated.html
+        │   │   │   │   ├── dir_397d9aeee4af8edecac90968d93b57df.html
+        │   │   │   │   ├── dir_528525bf25d7dfeed6764aad7d5c685a.html
+        │   │   │   │   ├── dir_6771681c3c38b5b8d271ec6f9a117c30.html
+        │   │   │   │   ├── dir_bfbbdeea101dde4ea693baf4134014bd.html
+        │   │   │   │   ├── dir_f14e7b84a4328a3ec74c1b1c4945b3ab.html
+        │   │   │   │   ├── doc.svg
+        │   │   │   │   ├── docd.svg
+        │   │   │   │   ├── doxygen.css
+        │   │   │   │   ├── doxygen.svg
+        │   │   │   │   ├── doxygen_crawl.html
+        │   │   │   │   ├── dynsections.js
+        │   │   │   │   ├── extra.css
+        │   │   │   │   ├── files.html
+        │   │   │   │   ├── folderclosed.svg
+        │   │   │   │   ├── folderclosedd.svg
+        │   │   │   │   ├── folderopen.svg
+        │   │   │   │   ├── folderopend.svg
+        │   │   │   │   ├── glfw3_8h.html
+        │   │   │   │   ├── glfw3_8h_source.html
+        │   │   │   │   ├── glfw3native_8h.html
+        │   │   │   │   ├── glfw3native_8h_source.html
+        │   │   │   │   ├── group__buttons.html
+        │   │   │   │   ├── group__context.html
+        │   │   │   │   ├── group__errors.html
+        │   │   │   │   ├── group__gamepad__axes.html
+        │   │   │   │   ├── group__gamepad__buttons.html
+        │   │   │   │   ├── group__hat__state.html
+        │   │   │   │   ├── group__init.html
+        │   │   │   │   ├── group__input.html
+        │   │   │   │   ├── group__joysticks.html
+        │   │   │   │   ├── group__keys.html
+        │   │   │   │   ├── group__mods.html
+        │   │   │   │   ├── group__monitor.html
+        │   │   │   │   ├── group__native.html
+        │   │   │   │   ├── group__shapes.html
+        │   │   │   │   ├── group__vulkan.html
+        │   │   │   │   ├── group__window.html
+        │   │   │   │   ├── index.html
+        │   │   │   │   ├── input_8md.html
+        │   │   │   │   ├── input_guide.html
+        │   │   │   │   ├── internal_8md.html
+        │   │   │   │   ├── internals_guide.html
+        │   │   │   │   ├── intro_8md.html
+        │   │   │   │   ├── intro_guide.html
+        │   │   │   │   ├── jquery.js
+        │   │   │   │   ├── main_8md.html
+        │   │   │   │   ├── menu.js
+        │   │   │   │   ├── menudata.js
+        │   │   │   │   ├── minus.svg
+        │   │   │   │   ├── minusd.svg
+        │   │   │   │   ├── monitor_8md.html
+        │   │   │   │   ├── monitor_guide.html
+        │   │   │   │   ├── moving_8md.html
+        │   │   │   │   ├── moving_guide.html
+        │   │   │   │   ├── nav_f.png
+        │   │   │   │   ├── nav_fd.png
+        │   │   │   │   ├── nav_g.png
+        │   │   │   │   ├── nav_h.png
+        │   │   │   │   ├── nav_hd.png
+        │   │   │   │   ├── navtree.css
+        │   │   │   │   ├── news.html
+        │   │   │   │   ├── news_8md.html
+        │   │   │   │   ├── open.png
+        │   │   │   │   ├── pages.html
+        │   │   │   │   ├── plus.svg
+        │   │   │   │   ├── plusd.svg
+        │   │   │   │   ├── quick_8md.html
+        │   │   │   │   ├── quick_guide.html
+        │   │   │   │   ├── resize.js
+        │   │   │   │   ├── spaces.svg
+        │   │   │   │   ├── splitbar.png
+        │   │   │   │   ├── splitbard.png
+        │   │   │   │   ├── struct_g_l_f_wallocator.html
+        │   │   │   │   ├── struct_g_l_f_wgamepadstate.html
+        │   │   │   │   ├── struct_g_l_f_wgammaramp.html
+        │   │   │   │   ├── struct_g_l_f_wimage.html
+        │   │   │   │   ├── struct_g_l_f_wvidmode.html
+        │   │   │   │   ├── sync_off.png
+        │   │   │   │   ├── sync_on.png
+        │   │   │   │   ├── tab_a.png
+        │   │   │   │   ├── tab_ad.png
+        │   │   │   │   ├── tab_b.png
+        │   │   │   │   ├── tab_bd.png
+        │   │   │   │   ├── tab_h.png
+        │   │   │   │   ├── tab_hd.png
+        │   │   │   │   ├── tab_s.png
+        │   │   │   │   ├── tab_sd.png
+        │   │   │   │   ├── tabs.css
+        │   │   │   │   ├── topics.html
+        │   │   │   │   ├── vulkan_8md.html
+        │   │   │   │   ├── vulkan_guide.html
+        │   │   │   │   ├── window_8md.html
+        │   │   │   │   └── window_guide.html
+        │   │   │   ├── Doxyfile
+        │   │   │   ├── cmake_install.cmake
+        │   │   │   └── warnings.txt
+        │   │   ├── src/
+        │   │   │   ├── CMakeFiles/
+        │   │   │   │   └── glfw.dir/
+        │   │   │   │       ├── context.c.obj
+        │   │   │   │       ├── egl_context.c.obj
+        │   │   │   │       ├── glfw.pdb
+        │   │   │   │       ├── init.c.obj
+        │   │   │   │       ├── input.c.obj
+        │   │   │   │       ├── monitor.c.obj
+        │   │   │   │       ├── null_init.c.obj
+        │   │   │   │       ├── null_joystick.c.obj
+        │   │   │   │       ├── null_monitor.c.obj
+        │   │   │   │       ├── null_window.c.obj
+        │   │   │   │       ├── osmesa_context.c.obj
+        │   │   │   │       ├── platform.c.obj
+        │   │   │   │       ├── vulkan.c.obj
+        │   │   │   │       ├── wgl_context.c.obj
+        │   │   │   │       ├── win32_init.c.obj
+        │   │   │   │       ├── win32_joystick.c.obj
+        │   │   │   │       ├── win32_module.c.obj
+        │   │   │   │       ├── win32_monitor.c.obj
+        │   │   │   │       ├── win32_thread.c.obj
+        │   │   │   │       ├── win32_time.c.obj
+        │   │   │   │       ├── win32_window.c.obj
+        │   │   │   │       └── window.c.obj
+        │   │   │   ├── cmake_install.cmake
+        │   │   │   ├── glfw3.lib
+        │   │   │   ├── glfw3.pc
+        │   │   │   ├── glfw3Config.cmake
+        │   │   │   └── glfw3ConfigVersion.cmake
+        │   │   ├── cmake_install.cmake
+        │   │   └── cmake_uninstall.cmake
+        │   ├── glm/
+        │   │   ├── CMakeFiles/
+        │   │   ├── glm/
+        │   │   │   ├── CMakeFiles/
+        │   │   │   │   └── glm.dir/
+        │   │   │   │       ├── detail/
+        │   │   │   │       │   └── glm.cpp.obj
+        │   │   │   │       └── glm.pdb
+        │   │   │   ├── cmake_install.cmake
+        │   │   │   └── glm.lib
+        │   │   └── cmake_install.cmake
+        │   └── cmake_install.cmake
+        ├── .ninja_deps
+        ├── .ninja_log
+        ├── CMakeCache.txt
+        ├── CMakeDoxyfile.in
+        ├── CMakeDoxygenDefaults.cmake
+        ├── VSInheritEnvironments.txt
+        ├── build.ninja
+        └── cmake_install.cmake

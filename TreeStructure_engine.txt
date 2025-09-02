@@ -1,0 +1,25 @@
+engine/
+├── core/
+│   ├── include/
+│   │   ├── Camera.hpp
+│   │   └── Physics.hpp
+│   └── src/
+│       ├── Camera.cpp
+│       └── Collision.cpp
+├── include/
+│   ├── engine/
+│   │   └── core/
+│   ├── Camera.hpp
+│   └── Physics.hpp
+├── renderer/
+│   ├── include/
+│   └── src/
+├── src/
+│   ├── Camera.cpp
+│   └── Collision.cpp
+├── world/
+│   ├── include/
+│   │   └── Chunk.hpp
+│   └── src/
+│       └── Chunk.cpp
+└── CMakeLists.txt
